@@ -3,13 +3,13 @@ describe "Battle", ->
     beforeEach ->
       @battle = new Battle
     it "assumes default values", ->
-      expect(@battle.get "attacker_ships").toEqual 1
+      expect(@battle.get "attacker_ships").toEqual null
       expect(@battle.get "attacker_ws").toEqual 1
-      expect(@battle.get "defender_ships").toEqual 1
+      expect(@battle.get "defender_ships").toEqual null
       expect(@battle.get "defender_ws").toEqual 1
     it "returns results", ->
       expect(@battle.attacker_ships_remaining()).toEqual 0
-      expect(@battle.defender_ships_remaining()).toEqual 1
+      expect(@battle.defender_ships_remaining()).toEqual 0
   describe "results", ->
     describe "attacker wins", ->
       beforeEach ->
@@ -73,3 +73,16 @@ describe "Battle", ->
         defender_ships: null
         defender_ws: 3
       expect(@battle.defender_ships_to_survive()).toEqual 1
+    describe "null results", ->
+      it "is null when values exists", ->
+        @battle = new Battle
+          attacker_ships: 3
+          attacker_ws: 3
+          defender_ships: 3
+          defender_ws: 3
+        expect(@battle.defender_ships_to_survive()).toEqual null
+        expect(@battle.attacker_ships_to_survive()).toEqual null
+      it "is null when values aren't defined", ->
+        @battle = new Battle
+        expect(@battle.defender_ships_to_survive()).toEqual null
+        expect(@battle.attacker_ships_to_survive()).toEqual null

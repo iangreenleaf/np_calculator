@@ -1,8 +1,8 @@
 class window.Battle extends Backbone.Model
   defaults:
-    attacker_ships: 1
+    attacker_ships: null
     attacker_ws: 1
-    defender_ships: 1
+    defender_ships: null
     defender_ws: 1
 
   attacker_ships_remaining: ->
@@ -19,7 +19,7 @@ class window.Battle extends Backbone.Model
     turns = Math.min @attacker_turns_needed(), @defender_turns_needed()
   attacker_turns: ->
     turns = @defender_turns()
-    turns -= 1 if turns == @defender_turns_needed()
+    turns -= 1 if turns == @defender_turns_needed() and turns > 0
     turns
 
   defender_turns_needed: ->
@@ -33,6 +33,7 @@ class window.Battle extends Backbone.Model
     @get("defender_ws") + 1
 
   ships_to_survive_helper: (us, them) ->
+    return null if @get("#{us}_ships") > 0 or not @get("#{them}_ships")?
     turns_needed = @["#{us}_turns_needed"]()
     turns_needed -= 1 if us is "defender"
     turns_needed * @["#{them}_weapons"]() + 1
