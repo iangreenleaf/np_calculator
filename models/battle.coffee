@@ -1,9 +1,9 @@
 class window.Battle extends Backbone.Model
   defaults:
-    attacker_ships: 0
-    attacker_ws: 0
-    defender_ships: 0
-    defender_ws: 0
+    attacker_ships: 1
+    attacker_ws: 1
+    defender_ships: 1
+    defender_ws: 1
 
   attacker_ships_remaining: ->
     @ships_remaining_helper "attacker", "defender"

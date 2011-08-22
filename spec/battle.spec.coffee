@@ -1,9 +1,15 @@
 describe "Battle", ->
-  beforeEach ->
-    @battle = new Battle
   describe "when empty", ->
-    it "has null result", ->
-      expect(1).toEqual 0
+    beforeEach ->
+      @battle = new Battle
+    it "assumes default values", ->
+      expect(@battle.get "attacker_ships").toEqual 1
+      expect(@battle.get "attacker_ws").toEqual 1
+      expect(@battle.get "defender_ships").toEqual 1
+      expect(@battle.get "defender_ws").toEqual 1
+    it "returns results", ->
+      expect(@battle.attacker_ships_remaining()).toEqual 0
+      expect(@battle.defender_ships_remaining()).toEqual 1
   describe "results", ->
     describe "attacker wins", ->
       beforeEach ->
