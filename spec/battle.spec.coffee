@@ -51,3 +51,25 @@ describe "Battle", ->
       it "reports ships remaining", ->
         expect(@battle.attacker_ships_remaining()).toEqual 0
         expect(@battle.defender_ships_remaining()).toEqual 1
+  describe "ships to survive", ->
+    it "calculates ships for attacker", ->
+      @battle = new Battle
+        attacker_ships: null
+        attacker_ws: 3
+        defender_ships: 10
+        defender_ws: 3
+      expect(@battle.attacker_ships_to_survive()).toEqual 17
+    it "calculates ships for defender", ->
+      @battle = new Battle
+        attacker_ships: 10
+        attacker_ws: 3
+        defender_ships: null
+        defender_ws: 3
+      expect(@battle.defender_ships_to_survive()).toEqual 7
+    it "calculates ship for defender's single strike", ->
+      @battle = new Battle
+        attacker_ships: 4
+        attacker_ws: 3
+        defender_ships: null
+        defender_ws: 3
+      expect(@battle.defender_ships_to_survive()).toEqual 1
