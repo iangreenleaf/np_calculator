@@ -46,3 +46,12 @@ class window.Battle extends Backbone.Model
       0,
       @get("#{us}_ships") - @["#{them}_turns"]() * @["#{them}_weapons"]()
     )
+
+  toJSON: ->
+    $.extend super, @prepare_hash()
+
+  prepare_hash: ->
+    props = [ 'attacker_ships_remaining', 'defender_ships_remaining', 'attacker_ships_to_survive', 'defender_ships_to_survive' ]
+    result = {}
+    result[p] = @[p]() for p in props
+    result

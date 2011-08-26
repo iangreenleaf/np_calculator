@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Neptune's Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="vendor/ICanHaz.min.js" ></script>
+    <script src="vendor/underscore.js" ></script>
+    <script src="vendor/backbone.js" ></script>
+    <script src="models/battle.js" ></script>
+    <script src="views/battle.js" ></script>
+
+    <script id="battle_form" type="text/html">
+      <form>
+        <label>Attacker ships:
+            <input type="number" name="attacker_ships" value="{{attacker_ships}}" />
+        </label>
+        <label>Attacker WS:
+            <input type="number" name="attacker_ws" value="{{attacker_ws}}" />
+        </label>
+        <label>Defender ships:
+            <input type="number" name="defender_ships" value="{{defender_ships}}" />
+        </label>
+        <label>Defender WS:
+            <input type="number" name="defender_ws" value="{{defender_ws}}" />
+        </label>
+      </form>
+    </script>
+    <script id="battle_results" type="text/html">
+      <div class="results">
+        <span class="label">Attacker ships remaining:</span>
+        <span class="value">{{attacker_ships_remaining}}
+        <span class="label">Defender ships remaining:</span>
+        <span class="value">{{defender_ships_remaining}}
+        {{#attacker_ships_to_survive}}
+        <span class="label">Attacker ships to survive:</span>
+        <span class="value">{{attacker_ships_to_survive}}
+        {{/attacker_ships_to_survive}}
+        {{#defender_ships_to_survive}}
+        <span class="label">Defender ships to survive:</span>
+        <span class="value">{{defender_ships_to_survive}}
+        {{/defender_ships_to_survive}}
+      </div>
+    </script>
+  </head>
+  <body>
+    <h1>Neptune's Calculator</h1>
+    <div id="content">
+    </div>
+  </body>
+</html>
