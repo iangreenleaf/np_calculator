@@ -7,15 +7,7 @@ class window.BattleView extends Backbone.View
   }
 
   updateModel: ->
-    params = _.reduce(
-      $("form").serializeArray(),
-      (params, obj) ->
-        params[obj.name] = parseInt obj.value
-        params
-      ,
-      {}
-    )
-    this.model.set params
+    this.model.set $("form").formParams()["battle"]
 
 class window.BattleResultsView extends Backbone.View
   initialize: ->
