@@ -1,11 +1,10 @@
 class window.BattleView extends Backbone.View
+
+  el: "form"
+
   events: {
     "keyup input": "updateModel"
   }
-
-  render: ->
-    $(@el).html(ich.battle_form(@model.toJSON()))
-    this
 
   updateModel: ->
     params = _.reduce(
@@ -30,6 +29,5 @@ $(document).ready ->
   window.battle = new Battle
   battle_form = new BattleView model: window.battle
   battle_results = new BattleResultsView model: window.battle
-  $("#content").append(battle_form.render().el)
   $("#content").append(battle_results.render().el)
 

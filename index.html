@@ -9,22 +9,6 @@
     <script src="models/battle.js" ></script>
     <script src="views/battle.js" ></script>
 
-    <script id="battle_form" type="text/html">
-      <form>
-        <label>Attacker ships:
-            <input type="number" name="attacker_ships" value="{{attacker_ships}}" />
-        </label>
-        <label>Attacker WS:
-            <input type="number" name="attacker_ws" value="{{attacker_ws}}" />
-        </label>
-        <label>Defender ships:
-            <input type="number" name="defender_ships" value="{{defender_ships}}" />
-        </label>
-        <label>Defender WS:
-            <input type="number" name="defender_ws" value="{{defender_ws}}" />
-        </label>
-      </form>
-    </script>
     <script id="battle_results" type="text/html">
       <div class="results">
         <span class="label">Attacker ships remaining:</span>
@@ -45,6 +29,20 @@
   <body>
     <h1>Neptune's Calculator</h1>
     <div id="content">
+      <form>
+        <label>Attacker ships:
+            <input type="number" name="attacker_ships" value="" />
+        </label>
+        <label>Attacker WS:
+            <input type="number" name="attacker_ws" value="" />
+        </label>
+        <label>Defender ships:
+            <input type="number" name="defender_ships" value="" />
+        </label>
+        <label>Defender WS:
+            <input type="number" name="defender_ws" value="" />
+        </label>
+      </form>
     </div>
   </body>
 </html>
