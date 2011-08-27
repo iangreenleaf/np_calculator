@@ -31,35 +31,25 @@ class window.Battle extends Backbone.RelationalModel
     @ships_to_survive_helper "defender", "attacker"
 
   defender_turns: ->
-    turns = Math.min @attacker_turns_needed(), @defender_turns_needed()
+    turns = Math.min @turns_needed("attacker","defender"), @turns_needed("defender","attacker")
   attacker_turns: ->
     turns = @defender_turns()
-    turns -= 1 if turns == @defender_turns_needed() and turns > 0
+    turns -= 1 if turns == @turns_needed("defender", "attacker") and turns > 0
     turns
-
-  defender_turns_needed: ->
-    @turns_needed_helper "defender", "attacker"
-  attacker_turns_needed: ->
-    @turns_needed_helper "attacker", "defender"
-
-  attacker_weapons: ->
-    @get("attacker").get("ws")
-  defender_weapons: ->
-    @get("defender").get("ws") + 1
 
   ships_to_survive_helper: (us, them) ->
     return null if @get(us).get("ships") > 0 or not @get(them).get("ships")?
-    turns_needed = @["#{us}_turns_needed"]()
+    turns_needed = @turns_needed us, them
     turns_needed -= 1 if us is "defender"
-    turns_needed * @["#{them}_weapons"]() + 1
+    turns_needed * @get(them).weapons() + 1
 
-  turns_needed_helper: (us, them) ->
-    Math.ceil @get(them).get("ships") / @["#{us}_weapons"]()
+  turns_needed: (us, them) ->
+    Math.ceil @get(them).get("ships") / @get(us).weapons()
 
   ships_remaining_helper: (us, them) ->
     Math.max(
       0,
-      @get(us).get("ships") - @["#{them}_turns"]() * @["#{them}_weapons"]()
+      @get(us).get("ships") - @["#{them}_turns"]() * @get(them).weapons()
     )
 
   toJSON: ->

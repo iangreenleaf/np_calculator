@@ -5,6 +5,8 @@ class window.Star extends Backbone.RelationalModel
     eta: null
     ws: 1
 
+  weapons: ->
+    @get("ws") + 1
   min_projected_ships: ->
     Math.floor @projected_ships()
   max_projected_ships: ->
