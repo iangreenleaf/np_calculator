@@ -1,4 +1,4 @@
-describe "Battle", ->
+describe "Star", ->
   describe "when empty", ->
     beforeEach ->
       @star = new Star

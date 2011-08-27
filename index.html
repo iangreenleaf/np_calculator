@@ -7,6 +7,9 @@
     <script src="vendor/jquery.formparams.min.js" ></script>
     <script src="vendor/underscore.js" ></script>
     <script src="vendor/backbone.js" ></script>
+    <script src="vendor/backbone-relational.js"></script>
+    <script src="models/star.js" ></script>
+    <script src="models/fleet.js" ></script>
     <script src="models/battle.js" ></script>
     <script src="views/battle.js" ></script>
 
@@ -32,16 +35,16 @@
     <div id="content">
       <form>
         <label>Attacker ships:
-            <input type="number" name="battle[attacker_ships]" value="" />
+            <input type="number" name="battle[attacker][ships]" value="" />
         </label>
         <label>Attacker WS:
-            <input type="number" name="battle[attacker_ws]" value="" />
+            <input type="number" name="battle[attacker][ws]" value="" />
         </label>
         <label>Defender ships:
-            <input type="number" name="battle[defender_ships]" value="" />
+            <input type="number" name="battle[defender][ships]" value="" />
         </label>
         <label>Defender WS:
-            <input type="number" name="battle[defender_ws]" value="" />
+            <input type="number" name="battle[defender][ws]" value="" />
         </label>
       </form>
     </div>

@@ -1,8 +1,9 @@
-class window.Star extends Backbone.Model
+class window.Star extends Backbone.RelationalModel
   defaults:
     ships: null
     industry: null
     eta: null
+    ws: 1
 
   min_projected_ships: ->
     Math.floor @projected_ships()

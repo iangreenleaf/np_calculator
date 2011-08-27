@@ -3,10 +3,10 @@ describe "Battle", ->
     beforeEach ->
       @battle = new Battle
     it "assumes default values", ->
-      expect(@battle.get "attacker_ships").toEqual null
-      expect(@battle.get "attacker_ws").toEqual 1
-      expect(@battle.get "defender_ships").toEqual null
-      expect(@battle.get "defender_ws").toEqual 1
+      expect(@battle.get("attacker").get("ships")).toEqual null
+      expect(@battle.get("attacker").get("ws")).toEqual 1
+      expect(@battle.get("defender").get("ships")).toEqual null
+      expect(@battle.get("defender").get("ws")).toEqual 1
     it "returns results", ->
       expect(@battle.attacker_ships_remaining()).toEqual 0
       expect(@battle.defender_ships_remaining()).toEqual 0
@@ -14,72 +14,88 @@ describe "Battle", ->
     describe "attacker wins", ->
       beforeEach ->
         @battle = new Battle
-          attacker_ships: 3
-          attacker_ws: 1
-          defender_ships: 1
-          defender_ws: 1
+          attacker:
+            ships: 3
+            ws: 1
+          defender:
+            ships: 1
+            ws: 1
       it "reports ships remaining", ->
         expect(@battle.attacker_ships_remaining()).toEqual 1
         expect(@battle.defender_ships_remaining()).toEqual 0
     describe "attacker wins empty star", ->
       beforeEach ->
         @battle = new Battle
-          attacker_ships: 3
-          attacker_ws: 3
-          defender_ships: 0
-          defender_ws: 3
+          attacker:
+            ships: 3
+            ws: 3
+          defender:
+            ships: 0
+            ws: 3
       it "reports ships remaining", ->
         expect(@battle.attacker_ships_remaining()).toEqual 3
         expect(@battle.defender_ships_remaining()).toEqual 0
     describe "defender wins from bonus", ->
       beforeEach ->
         @battle = new Battle
-          attacker_ships: 10
-          attacker_ws: 3
-          defender_ships: 7
-          defender_ws: 3
+          attacker:
+            ships: 10
+            ws: 3
+          defender:
+            ships: 7
+            ws: 3
       it "reports ships remaining", ->
         expect(@battle.attacker_ships_remaining()).toEqual 0
         expect(@battle.defender_ships_remaining()).toEqual 1
     describe "defender wins by striking first", ->
       beforeEach ->
         @battle = new Battle
-          attacker_ships: 5
-          attacker_ws: 3
-          defender_ships: 1
-          defender_ws: 4
+          attacker:
+            ships: 5
+            ws: 3
+          defender:
+            ships: 1
+            ws: 4
       it "reports ships remaining", ->
         expect(@battle.attacker_ships_remaining()).toEqual 0
         expect(@battle.defender_ships_remaining()).toEqual 1
   describe "ships to survive", ->
     it "calculates ships for attacker", ->
       @battle = new Battle
-        attacker_ships: null
-        attacker_ws: 3
-        defender_ships: 10
-        defender_ws: 3
+        attacker:
+          ships: null
+          ws: 3
+        defender:
+          ships: 10
+          ws: 3
       expect(@battle.attacker_ships_to_survive()).toEqual 17
     it "calculates ships for defender", ->
       @battle = new Battle
-        attacker_ships: 10
-        attacker_ws: 3
-        defender_ships: null
-        defender_ws: 3
+        attacker:
+          ships: 10
+          ws: 3
+        defender:
+          ships: null
+          ws: 3
       expect(@battle.defender_ships_to_survive()).toEqual 7
     it "calculates ship for defender's single strike", ->
       @battle = new Battle
-        attacker_ships: 4
-        attacker_ws: 3
-        defender_ships: null
-        defender_ws: 3
+        attacker:
+          ships: 4
+          ws: 3
+        defender:
+          ships: null
+          ws: 3
       expect(@battle.defender_ships_to_survive()).toEqual 1
     describe "null results", ->
       it "is null when values exists", ->
         @battle = new Battle
-          attacker_ships: 3
-          attacker_ws: 3
-          defender_ships: 3
-          defender_ws: 3
+          attacker:
+            ships: 3
+            ws: 3
+          defender:
+            ships: 3
+            ws: 3
         expect(@battle.defender_ships_to_survive()).toEqual null
         expect(@battle.attacker_ships_to_survive()).toEqual null
       it "is null when values aren't defined", ->
