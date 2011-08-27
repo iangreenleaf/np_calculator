@@ -63,7 +63,7 @@ class window.Battle extends Backbone.RelationalModel
     )
 
   toJSON: ->
-    $.extend super, @prepare_hash()
+    _.extend super, @prepare_hash()
 
   prepare_hash: ->
     props = [ 'attacker_ships_remaining', 'defender_ships_remaining', 'attacker_ships_to_survive', 'defender_ships_to_survive' ]
